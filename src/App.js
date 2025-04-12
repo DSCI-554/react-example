@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, NavLink } from 'react-router-dom';
 import Home from './components/home';
-import Deploy from './components/depploy';
+import Deploy from './components/deploy';
 import './App.css';
 
 function App() {

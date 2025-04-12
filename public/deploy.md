@@ -1,19 +1,17 @@
-# Deploying a React App* to GitHub Pages
+# Instructions to Deployment on GitHub Pages
 
-\* created using `create-react-app`
+This document provides step-by-step instructions to deploy a React App, built with `create-react-app`, on GitHub Pages.
 
-# Tutorial
+## Create React app repository
 
-## Procedure
-
-### 1. Create an **empty** repository on GitHub
+### Create an **empty** repository on GitHub
 
 1. Sign into your GitHub account.
 2. Visit the project repository.
 3. You will need to set the repository to public for GitHub page deployment.
 4. Submit the form.
 
-### 2. Create a React app
+### Create a React app
 
 1. Create a React app named `my-app`:
 
@@ -23,6 +21,7 @@
    ```shell
    $ npx create-react-app my-app
    ```
+
 2. Enter the newly-created folder:
 
    ```shell
@@ -31,7 +30,9 @@
 
 At this point, there is a React app on your computer and you are in the folder that contains its source code. All of the remaining commands shown in this tutorial can be run from that folder.
 
-### 3. Install the `gh-pages` npm package
+## Deploy to GitHub Pages
+
+### Install the `gh-pages` npm package
 
 1. Install the [`gh-pages`](https://github.com/tschaub/gh-pages) npm package and designate it as a [development dependency](https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file):
 
@@ -41,44 +42,36 @@ At this point, there is a React app on your computer and you are in the folder t
 
 At this point, the `gh-pages` npm package is installed on your computer and the React app's dependence upon it is documented in the React app's `package.json` file.
 
-### 4. Add a `homepage` property to the `package.json` file
+### Add a `homepage` property to the `package.json` file
 
 1. Open the `package.json` file in a text editor.
-2. Add a `homepage` property in this format\*: `https://{username}.github.io/{repo-name}`
-
-   > \* For a [project site](https://pages.github.com/#project-site), that's the format. For a [user site](https://pages.github.com/#user-site), the format is: `https://{username}.github.io`. You can read more about the `homepage` property in the [&#34;GitHub Pages&#34; section](https://create-react-app.dev/docs/deployment/#github-pages) of the `create-react-app` documentation.
-   >
+2. Add a `homepage` property formatted as shown:
 
    ```diff
    {
      "name": "my-app",
      "version": "0.1.0",
-   + "homepage": "https://{username}.github.io/{repo-name}",
+     "homepage": "https://{username}.github.io/{repo-name}",
      "private": true,
    ```
 
 At this point, the React app's `package.json` file includes a property named `homepage`.
 
-### 5. Add deployment scripts to the `package.json` file
+### Add deployment scripts to the `package.json` file
 
-1. Open the `package.json` file in a text editor (if it isn't already open in one).
-
-   ```shell
-   $ vi package.json
-   ```
-2. Add a `predeploy` property and a `deploy` property to the `scripts` object:
+1. Open the `package.json` file in a text editor and add a `predeploy` property and a `deploy` property to the `scripts` object as shown below:
 
    ```diff
    "scripts": {
-   +   "predeploy": "npm run build",
-   +   "deploy": "gh-pages -d build",
+       "predeploy": "npm run build",
+       "deploy": "gh-pages -d build",
        "start": "react-scripts start",
        "build": "react-scripts build",
    ```
 
 At this point, the  React app's `package.json` file includes deployment scripts.
 
-### 6. Add a "remote" that points to the GitHub repository
+### Add a "remote" that points to the GitHub repository
 
 1. Add a "[remote](https://git-scm.com/docs/git-remote)" to the local Git repository.
 
@@ -95,7 +88,7 @@ At this point, the  React app's `package.json` file includes deployment scripts.
 
 At this point, the local repository has a "remote" whose URL points to the GitHub repository you created in Step 1.
 
-### 7. Push the React app to the GitHub repository
+### Push the React app to the GitHub repository
 
 1. Push the React app to the GitHub repository
 
@@ -117,7 +110,7 @@ At this point, the local repository has a "remote" whose URL points to the GitHu
 
 At this point, the GitHub repository contains a branch named `gh-pages`, which contains the files that make up the distributable version of the React app. However, we haven't configured GitHub Pages to _serve_ those files yet.
 
-### 8. Configure GitHub Pages
+### Configure GitHub Pages
 
 1. Navigate to the **GitHub Pages** settings page
    1. In your web browser, navigate to the GitHub repository
@@ -134,7 +127,7 @@ At this point, the GitHub repository contains a branch named `gh-pages`, which c
 
 At this point, the React app is accessible to anyone who visits the `homepage` URL you specified in Step 4. For example, the React app I deployed is accessible at https://gitname.github.io/react-gh-pages.
 
-### 9. Store the React app's _source code_ on GitHub
+### Store the React app's _source code_ on GitHub
 
 In a previous step, the `gh-pages` npm package pushed the distributable version of the React app to a branch named `gh-pages` in the GitHub repository. However, the _source code_ of the React app is not yet stored on GitHub.
 
@@ -151,14 +144,17 @@ In this step, I'll show you how you can store the source code of the React app o
    > I recommend exploring the GitHub repository at this point. It will have two branches: `main` and `gh-pages`. The `main` branch will contain the React app's source code, while the `gh-pages` branch will contain the distributable version of the React app.
    >
 
-# References
+## References
 
-1. [The official `create-react-app` deployment guide](https://create-react-app.dev/docs/deployment/#github-pages)
+1. [The official create-react-app deployment guide](https://create-react-app.dev/docs/deployment/#github-pages)
 2. [GitHub blog: Build and deploy GitHub Pages from any branch](https://github.blog/changelog/2020-09-03-build-and-deploy-github-pages-from-any-branch/)
-3. [Preserving the `CNAME` file when using a custom domain](https://github.com/gitname/react-gh-pages/issues/89#issuecomment-1207271670)
+3. [Preserving the CNAME file when using a custom domain](https://github.com/gitname/react-gh-pages/issues/89#issuecomment-1207271670)
 4. [Deploying a React App* to GitHub Pages](https://github.com/gitname/react-gh-pages)
+5. [GitHub Pages project site](https://pages.github.com/#project-site)
+6. [GitHub Pages user site](https://pages.github.com/#user-site)
+7. [&#34;GitHub Pages&#34; section of the create-react-app documentation](https://create-react-app.dev/docs/deployment/#github-pages)
 
-# Notes
+## Notes
 
 - Special thanks to GitHub (the company) for providing us with the GitHub Pages hosting service for free.
 - And now, time to turn the default React app generated by `create-react-app` into something unique!
